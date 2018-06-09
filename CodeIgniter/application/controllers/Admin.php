@@ -37,17 +37,30 @@ class Admin extends MY_Controller{
 	}
 	public function store_article()
 	{
+		//IMAGE UPLOAD
+		$config=[
+					'upload_path' => './uploads/',
+					'allowed_types' =>'jpg|gif|jpeg|png',
+		];
+		$this->load->library('upload',$config);
+
 		$this->load->library('form_validation');
-		if($this->form_validation->run('add_article_rules')){
+		//FORM VALIDATION PROCESS STARTs
+		if($this->form_validation->run('add_article_rules')&& $this->upload->do_upload())
+		{
 			$post=$this->input->post();
 			
 			//removing submit item present in post array
 			unset($post['submit']);
+			$data=$this->upload->data();
+			$img_path=base_URL("uploads/".$data['raw_name'].$data['file_ext']);
+			$post['img_path']=$img_path;
 			//loading model articlesmodel with name articles
 			$this->flashAndRedirect($this->articles->add_articles($post),'added','add');			
 		}
 		else{
-			$this->load->view('admin/add_article');
+			$upload_error=$this->upload->display_errors();
+			$this->load->view('admin/add_article',compact('upload_error'));
 		}
 	}
 	public function edit_article($article_id)

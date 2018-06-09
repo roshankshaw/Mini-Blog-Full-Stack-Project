@@ -4,15 +4,7 @@
 		  <?php echo form_open('login/admin_login');?>
 		  <fieldset>
 		    <legend>Admin Login</legend>
-		    <?php if($error= $this->session->flashdata('login_failed')): ?>
-		    <div class="row">
-		    	<div class="col-md-6">
-		    		<div class="alert alert-dismissible alert-info">
-					  <strong><?= $error?></strong>
-					</div>
-		    	</div>
-		    </div>
-		<?php endif;?>
+
 		    <div class="row">
 			    <div class="form-group col-md-6">
 			      <label for="exampleInputEmail1">Name:</label>

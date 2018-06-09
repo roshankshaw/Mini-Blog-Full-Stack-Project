@@ -1,7 +1,7 @@
 <?php include('admin_header.php') ?>
 
 <div class="container">
-		  <?php echo form_open('admin/store_article');?>
+		  <?php echo form_open_multipart('admin/store_article');?>
 		  <?php echo form_hidden('user_id',$this->session->userdata('user_id'));?>
 		  <?php echo form_hidden('created_at',date('Y-m-d H:i:s'));?>
 		  <fieldset>
@@ -25,6 +25,16 @@
 			    <div class="col-md-6">
 			    	<br>
 			      <small style=" padding-top: 50%; color:red;"><?php echo form_error('body'); ?></small>
+			    </div>
+			</div>
+			<div class="row" style="padding-left: 2.5%;">
+			    <div class="form-group col-md-6">
+			      <label >User file:</label>
+			      <?php echo form_upload(['name'=>'userfile','class'=>'form-control']) ?>
+			    </div>
+			    <div class="col-md-6">
+			    	<br>
+		      <small style=" padding-top: 50%; color:red;"><?php  if(isset($upload_error)) echo $upload_error;?></small>
 			    </div>
 			</div>
 			<div class="form-group col-md-6 offset-md-4" style="padding-left: 2.5%;">

@@ -13,7 +13,13 @@
 			<p><?= $article->body?></p>
 		</div>
 	</div>
-
+	<?php if(! is_null($article->img_path)):?>
+	<div class="row">
+		<div class="col-md-6">
+			<img src="<?= $article->img_path ?>" alt="article image">
+		</div>
+	</div>
+	<?php endif; ?>
 </div>
 
 <?php 	include_once('public_footer.php') ?>

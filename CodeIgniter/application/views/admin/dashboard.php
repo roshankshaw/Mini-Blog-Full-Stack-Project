@@ -8,13 +8,12 @@
 			<!-- <a class="btn btn-success btn-lg float-right" href=" base_url function" >Add Article</a> -->
 		</div>
 	</div>
-	<br>
 
 	    <?php if($feedback = $this->session->flashdata('feedback')):
 	    		$feedback_class=$this->session->flashdata('feedback_class');
 	     ?>
-		    <div class="row">
-		    	<div class="col-md-8 offset-md-2">
+		    <div class="container">
+		    	<div class="col-md-6 offset-md-3">
 		    		<div class="alert alert-dismissible <?=$feedback_class?>">
 					  <center><strong><?= $feedback ?></strong></center>
 					</div>
